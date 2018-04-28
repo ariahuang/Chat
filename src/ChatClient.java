@@ -7,6 +7,7 @@ import java.net.*;
 public class ChatClient extends Frame {
 	
 	Socket s = null;
+	DataOutputStream  dos = null;
 	
 	TextField tfTxt = new TextField();
 	TextArea taContent = new TextArea();
@@ -25,6 +26,7 @@ public class ChatClient extends Frame {
 			
 			@Override
 			public void windowClosing(WindowEvent arg0){
+				disconnect();
 				System.exit(0);
 			}
 			
@@ -37,6 +39,7 @@ public class ChatClient extends Frame {
 	public void connect() {
 		try {
 			s = new Socket("127.0.0.1", 8888);
+			dos = new DataOutputStream(s.getOutputStream());
 System.out.println("Connected");
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -44,6 +47,16 @@ System.out.println("Connected");
 			e.printStackTrace();
 		}
 
+		
+	}
+	
+	public void disconnect(){
+		try {
+			dos.close();
+			s.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -55,10 +68,10 @@ System.out.println("Connected");
 			tfTxt.setText("");
 			
 			try {
-				DataOutputStream dos =new DataOutputStream(s.getOutputStream());
+				
 				dos.writeUTF(str);
 				dos.flush();
-				dos.close();
+				//dos.close();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
