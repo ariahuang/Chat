@@ -29,8 +29,7 @@ public class ChatClient extends Frame {
 				disconnect();
 				System.exit(0);
 			}
-			
-		});
+		}); 
 		tfTxt.addActionListener(new TFListener());
 		setVisible(true);
 		connect();
