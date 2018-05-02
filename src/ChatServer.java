@@ -13,6 +13,8 @@ public class ChatServer {
 			ss = new ServerSocket(8888);
 		} catch (BindException e) {
 			System.out.println("Endpoint is using ...");
+			System.out.println("Please close the related application and restart the server!");
+			System.exit(0);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
