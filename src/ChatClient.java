@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.*;
 
 public class ChatClient extends Frame {
@@ -114,7 +112,10 @@ System.out.println("Connected");
 				} 
 			}catch (SocketException e) {
 				System.out.println("Quit, Bye~~");
-			}catch (IOException e) {
+			} catch (EOFException e) {
+				System.out.println("Quit, Bye-bye~~");
+			}
+			catch (IOException e) {
 				e.printStackTrace();
 			} 
 				

@@ -65,10 +65,12 @@ System.out.println("A client is connected");
 			}
 		}
 		
-		public void send(String str){
+		public void send(String str) {
 			try {
 				dos.writeUTF(str);
 			} catch (IOException e) {
+				clients.remove(this);
+				System.out.println(" Someone is quit! Remove from the list");
 				e.printStackTrace();
 			}
 		}
@@ -98,6 +100,7 @@ System.out.println(str);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+				
 			}
 			 
 		}
